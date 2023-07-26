@@ -57,21 +57,25 @@ function updateList() {
         taskDiv.appendChild(checkBox);
 
         let taskText = document.createElement('span');
-        taskText.innerText = todoList[i].text + ' [Schedule: ' + todoList[i].schedule + ']';
+        taskText.innerText = todoList[i].text + ' [Schedule: ' + todoList[i].schedule + '] ';
         if (todoList[i].completed) {
             taskText.className = 'completed';
         }
+        
+        // Create a delete icon
+        let deleteIcon = document.createElement('span');
+        deleteIcon.innerHTML = '&#x2716;'; // This is the Unicode code for the "x" symbol
+        deleteIcon.style.cursor = 'pointer';
+        deleteIcon.style.color = 'red'; // This will make the icon red
+        deleteIcon.onclick = function() { deleteTask(i); };
+        
+        taskText.appendChild(deleteIcon);
         taskDiv.appendChild(taskText);
         
-        // Create a delete button
-        let deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.onclick = function() { deleteTask(i); };
-        taskDiv.appendChild(deleteButton);
-
         listDiv.appendChild(taskDiv);
     }
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
