@@ -63,7 +63,7 @@ todoText.innerHTML = todoList[i].text;
 todoText.className = 'textStyle'; // Apply textStyle class
 
 let scheduleText = document.createElement('span');
-scheduleText.innerHTML = '    [Schedule: ' + todoList[i].schedule + ']';
+scheduleText.innerHTML = '- ' + todoList[i].schedule;
 scheduleText.className = 'scheduleStyle'; // Apply scheduleStyle class
 
 taskText.appendChild(todoText);
@@ -79,7 +79,9 @@ if (todoList[i].completed) {
         let deleteIcon = document.createElement('span');
         deleteIcon.innerHTML = '&#x2716;'; // This is the Unicode code for the "x" symbol
         deleteIcon.style.cursor = 'pointer';
-        deleteIcon.style.color = 'red'; // This will make the icon red
+        deleteIcon.style.color = '#78290f'; // This will make the icon red
+        deleteIcon.style.marginLeft = '5px';
+        console.log(deleteIcon);
         deleteIcon.onclick = function() { deleteTask(i); };
         
         taskText.appendChild(deleteIcon);
