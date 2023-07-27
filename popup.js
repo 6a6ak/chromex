@@ -57,10 +57,23 @@ function updateList() {
         taskDiv.appendChild(checkBox);
 
         let taskText = document.createElement('span');
-        taskText.innerText = todoList[i].text + ' [Schedule: ' + todoList[i].schedule + '] ';
-        if (todoList[i].completed) {
-            taskText.className = 'completed';
-        }
+
+let todoText = document.createElement('span');
+todoText.innerHTML = todoList[i].text;
+todoText.className = 'textStyle'; // Apply textStyle class
+
+let scheduleText = document.createElement('span');
+scheduleText.innerHTML = '    [Schedule: ' + todoList[i].schedule + ']';
+scheduleText.className = 'scheduleStyle'; // Apply scheduleStyle class
+
+taskText.appendChild(todoText);
+taskText.appendChild(document.createElement('br')); // Adding a line break
+taskText.appendChild(scheduleText);
+
+if (todoList[i].completed) {
+    taskText.className += ' completed'; // Append the completed class if the task is completed
+}
+
         
         // Create a delete icon
         let deleteIcon = document.createElement('span');
