@@ -81,7 +81,6 @@ if (todoList[i].completed) {
         deleteIcon.style.cursor = 'pointer';
         deleteIcon.style.color = '#78290f'; // This will make the icon red
         deleteIcon.style.marginLeft = '5px';
-        console.log(deleteIcon);
         deleteIcon.onclick = function() { deleteTask(i); };
         
         taskText.appendChild(deleteIcon);
