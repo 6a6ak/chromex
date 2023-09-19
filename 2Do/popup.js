@@ -27,6 +27,7 @@ function addTask() {
     let taskText = document.getElementById('taskText');
     let taskSchedule = document.getElementById('taskSchedule');
 
+
     todoList.push({ text: taskText.value, schedule: taskSchedule.value, completed: false });
 
     // Clear the input fields
@@ -70,6 +71,7 @@ taskText.appendChild(todoText);
 taskText.appendChild(document.createElement('br')); // Adding a line break
 taskText.appendChild(scheduleText);
 
+
 if (todoList[i].completed) {
     taskText.className += ' completed'; // Append the completed class if the task is completed
 }
@@ -81,13 +83,18 @@ if (todoList[i].completed) {
         deleteIcon.style.cursor = 'pointer';
         deleteIcon.style.color = '#78290f'; // This will make the icon red
         deleteIcon.style.marginLeft = '5px';
+      
         deleteIcon.onclick = function() { deleteTask(i); };
         
         taskText.appendChild(deleteIcon);
         taskDiv.appendChild(taskText);
-        
         listDiv.appendChild(taskDiv);
     }
+
+
+
+
+
 }
 
 
@@ -96,3 +103,17 @@ document.addEventListener('DOMContentLoaded', function () {
     loadTasks(); // Load tasks when the document is loaded
     document.getElementById('addTaskButton').addEventListener('click', addTask);
 });
+
+document.getElementById('mode-toggler').addEventListener('click', function () {
+    const sunIcon = document.getElementById('moon-icon');
+    const moonIcon = document.getElementById('sun-icon');
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'inline-block';
+    } else {
+      moonIcon.style.display = 'none';
+      sunIcon.style.display = 'inline-block';
+    }
+  });
+  

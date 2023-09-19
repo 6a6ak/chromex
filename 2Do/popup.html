@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffecd1;
+            background-color: #EEEEEE;
             background-image: url('images/bg.png');
             padding: 5px;
-            color: #001524;
+            color: #00b4cf;        /* Text color */
             min-width: 300px;
             border-radius: 10px;
             border: 1px solid #333;
         }
+       .subject {
+        color: #00b4cf;
+    position: relative; /* Fix the position */
+    top: 0;          /* Align to top */
+    left: 0;         /* Align to left */
+    margin: 10px;    /* Add some margin for spacing */
+    z-index: 100;    /* Place it above other elements */
+}
+
+
+
        h1 {
             margin: 5px;
-            font-size: 14px;
+            font-size: 16px;
             color: #15616d;
         }
        
        
        h2 {
-            color: #666;
-            font-size: 14px;
+            color: #084d75;
+            font-size: 16px;
         }
         h3 {
-            color: #666;
-            font-size: 12px;
+            color: #15616d;
+            font-size: 15px;
             text-decoration: underline;
         }
         #todoList {
@@ -33,7 +45,12 @@
         }
         .completed {
             text-decoration: line-through;
-            text-decoration-color: #78290f;
+            text-decoration-color: #ffffff;
+        
+        }
+        body.dark .completed {
+            text-decoration: line-through;
+            text-decoration-color: #b10000;
         }
         button {
             background-color: #15616d;
@@ -52,28 +69,109 @@
             border: 1px solid #333;
             border-top-right-radius : 5px;border-bottom-right-radius : 5px;
             padding: 4px;
-            margin: 4px 0;
+            margin-left: 14px;
+            margin-top: 4px;
+            margin-bottom: 4px;
             box-sizing: border-box;
             font-size: 12px;
         }
         .textStyle {
-    color: #ff7d00;         /* Text color */
-    font-size: 12px;    /* Font size */
+    color: #f32c09;         /* Text color */
+    font-size: 14px;    /* Font size */
     /* Add any other CSS properties you want here */
+    
+
 }
 
 .scheduleStyle {
-    margin-left: 10px;
-    color: #15616d;        /* Text color */
-    font-size: 10px;    /* Font size */
+    margin-left: 15px;
+    padding-bottom: 20px;
+    color: #063c44;        /* Text color */
+    font-size: 12px;    /* Font size */
     /* Add any other CSS properties you want here */
 }
+/* For Light Mode */
+body.dark .subject {
+    color: #0b70aa;
+    position: relative; /* Fix the position */
+    top: 0;          /* Align to top */
+    left: 0;         /* Align to left */
+    margin: 10px;    /* Add some margin for spacing */
+    z-index: 100; 
+}
+/* For Light Mode */
+body.dark .scheduleStyle {
+    margin-left: 15px;
+    padding-bottom: 20px;
+    color: #063c44;  /* Text color for Light Mode */
+    font-size: 12px; /* Font size for Light Mode */
+    /* Add any other CSS properties you want here for Light Mode */
+}
+
+/* For Dark Mode */
+body .scheduleStyle {
+    margin-left: 15px;
+    padding-bottom: 20px;
+    color: #11a0b6;  /* Text color for Dark Mode */
+    font-size: 12px; /* Font size for Dark Mode */
+    /* Add any other CSS properties you want here for Dark Mode */
+}
+
+body {
+    /* Light mode colors */
+    --text-color: black;
+    --background-color: white;
+    --h1-color: red;
+    --icon-color: rgb(206, 189, 189);
+  }
+  
+  body.dark {
+    /* Dark mode colors */
+    --text-color: white;
+    --background-color: black;
+    --h1-color: blue;
+    --icon-color: rgb(255, 115, 0);
+    background-image: url('images/bg.png');
+  }
+  
+  body {
+    /* Use the variables */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    background-image: url('images/bgd.png');
+  }
+  
+  h1 {
+    color: var(--h1-color);
+  }
+  
+  .switch-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: fixed; /* Fix the position */
+    bottom: 0;       /* Align to bottom */
+    right: 0;        /* Align to right */
+    margin: 10px;    /* Add some margin for spacing */
+    z-index: 100; 
+  }
+  
+  .switch-button i {
+    font-size: 24px;
+    color: var(--icon-color);  /* set color of the icons */
+  }
+
+
 
     </style>
 </head>
 <body>
+    <button id="mode-toggler" class="switch-button">
+        <i id="moon-icon" class="fas fa-moon"></i>
+        <i id="sun-icon" class="fas fa-sun" style="display: none;"></i>
+      </button>
   
-<h1>2Do List</h1><hr>
+<h1 class="subject">2Do List</h1><hr>
 <h2>
 
     <div id="todoList">
@@ -83,9 +181,9 @@
 
 <hr>
 <h3>Add a new task</h3>
-<label for="taskText">Task:</label><br>
+<label class="subject" for="taskText">Task:</label><br>
 <input type="text" id="taskText"><br>
-<label for="taskSchedule">Schedule:</label><br>
+<label class="subject" for="taskSchedule">Schedule:</label><br>
 <input type="text" id="taskSchedule"><br>
 <button id="addTaskButton">Add task</button>
 
